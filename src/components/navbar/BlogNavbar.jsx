@@ -29,6 +29,14 @@ const NavBar = (props) => {
           </svg>
           Post Product
         </Button>
+        <Button
+          as={Link}
+          to="/login"
+          className="blog-navbar-add-button bg-dark"
+          size="lg"
+        >
+          Login
+        </Button>
       </Container>
     </Navbar>
   );

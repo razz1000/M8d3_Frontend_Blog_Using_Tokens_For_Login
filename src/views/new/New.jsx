@@ -14,22 +14,25 @@ const NewBlogPost = (props) => {
     });
   };
 
-  let fetchData = async () => {
-    let response = await fetch("https://strive100.herokuapp.com/products", {
-      method: "POST",
-      body: JSON.stringify(eComProducts),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  /*   let fetchData = async () => {
+    let response = await fetch(
+      "https://strive100.herokuapp.com/products",
+      {
+        method: "POST",
+        body: JSON.stringify(eComProducts),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     if (response.ok) {
       console.log(response);
     }
-  };
+  }; */
 
   let submitData = (event) => {
     event.preventDefault();
-    fetchData();
+    /* fetchData(); */
   };
 
   return (

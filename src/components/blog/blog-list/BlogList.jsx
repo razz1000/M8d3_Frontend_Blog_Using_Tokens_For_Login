@@ -18,9 +18,9 @@ const BlogList = (props) => {
     }
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     fetchData();
-  }, []);
+  }, []); */
 
   return (
     <Row>
