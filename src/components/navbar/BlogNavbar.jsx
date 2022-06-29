@@ -31,6 +31,14 @@ const NavBar = (props) => {
         </Button>
         <Button
           as={Link}
+          to="/register"
+          className="blog-navbar-add-button bg-dark"
+          size="lg"
+        >
+          Register
+        </Button>
+        <Button
+          as={Link}
           to="/login"
           className="blog-navbar-add-button bg-dark"
           size="lg"

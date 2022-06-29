@@ -3,85 +3,95 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
-  const [emailFromInput, setEmailFromInput] = useState("");
-  const [passwordFromInput, setPasswordFromInput] = useState("");
+const RegisterPage = () => {
+  const [firstnameInput, setFirstnameInput] = useState("");
+  const [lastnameInput, setLastnameInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+  const [emailInput, setEmailInput] = useState("");
 
-  const loginUrl = "http://localhost:3001/users/login";
   const registerUrl = "http://localhost:3001/users/register";
 
-  let navigate = useNavigate();
-
-  const routeChange = () => {
-    let path = `/`;
-    navigate(path);
-  };
-
   const bodyData = {
-    email: emailFromInput,
-    password: passwordFromInput,
+    email: emailInput,
+    password: passwordInput,
+    firstName: firstnameInput,
+    lastName: lastnameInput,
   };
-  const token = window.localStorage.getItem("token");
 
-  let loginFetch = async () => {
-    const response = await fetch(loginUrl, {
+  const fetchData = async () => {
+    let response = await fetch(registerUrl, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
-        Authorization: `Bearer ${token}`,
+        /* Authorization: `Bearer ${token}`, */
       },
       body: JSON.stringify(bodyData),
     });
     if (response.ok) {
-      const data = await response.json();
+      let data = await response.json();
       console.log(data);
-      let accessToken = data.accessToken;
-      console.log("ACCESSTOKEN:", accessToken);
-      localStorage.setItem("token", JSON.stringify(accessToken));
-      routeChange("/");
     } else {
-      console.log("Something went wrong in the login process.");
+      console.log("something went wrong during registration.");
     }
   };
 
   const onSubmitFunction = (event) => {
     event.preventDefault();
-    loginFetch();
+    fetchData();
   };
 
   return (
-    <Container className="new-login-container">
+    <Container className="register-top-container">
       <Row>
         <Col>
-          <h1 className="h1-login-header">LOGIN</h1>
           <Form onSubmit={onSubmitFunction}>
-            <Form.Group controlId="formBasicEmail" className="mt=5">
+            <Form.Group>
+              <Form.Label>Firstname</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Your firstname"
+                onChange={(event) => {
+                  setFirstnameInput(event.target.value);
+                }}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Lastname</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Your lastname"
+                onChange={(event) => {
+                  setLastnameInput(event.target.value);
+                }}
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Enter email"
                 onChange={(event) => {
-                  setEmailFromInput(event.target.value);
+                  setEmailInput(event.target.value);
                 }}
               />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
             </Form.Group>
-
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Password"
                 onChange={(event) => {
-                  setPasswordFromInput(event.target.value);
+                  setPasswordInput(event.target.value);
                 }}
               />
             </Form.Group>
+
             <Form.Group controlId="formBasicCheckbox"></Form.Group>
             <Button variant="primary" type="submit">
-              Login
+              Register
             </Button>
           </Form>
         </Col>
@@ -90,4 +100,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
