@@ -7,6 +7,7 @@ import NewBlogPost from "./views/new/New";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./components/login/LoginPage";
 import RegisterPage from "./components/register/RegisterPage";
+import MePage from "./components/mePage/MePage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/new" element={<NewBlogPost />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/me/:token" element={<MePage />} />
       </Routes>
       <Footer />
     </Router>

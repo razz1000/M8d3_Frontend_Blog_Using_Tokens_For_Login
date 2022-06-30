@@ -8,7 +8,6 @@ const LoginPage = () => {
   const [passwordFromInput, setPasswordFromInput] = useState("");
 
   const loginUrl = "http://localhost:3001/users/login";
-  const registerUrl = "http://localhost:3001/users/register";
 
   let navigate = useNavigate();
 
